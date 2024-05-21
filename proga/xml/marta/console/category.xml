@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Categories>
+	<Category>
+		<CategoryId>1</CategoryId>
+		<Name>computer</Name>
+		<GarantyYear>15</GarantyYear>
+	</Category>
+
+	<Category>
+		<CategoryId>2</CategoryId>
+		<Name>iphone</Name>
+		<GarantyYear>1</GarantyYear>
+	</Category>
+
+	<Category>
+		<CategoryId>3</CategoryId>
+		<Name>android</Name>
+		<GarantyYear>10</GarantyYear>
+	</Category>
+
+
+</Categories>
