@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Categories>
+    <Category>
+        <Id>1</Id>
+        <Name>Electronics</Name>
+        <WarrantyYears>2</WarrantyYears>
+    </Category>
+    <Category>
+        <Id>2</Id>
+        <Name>Appliances</Name>
+        <WarrantyYears>3</WarrantyYears>
+    </Category>
+    <Category>
+        <Id>3</Id>
+        <Name>Furniture</Name>
+        <WarrantyYears>5</WarrantyYears>
+    </Category>
+</Categories>

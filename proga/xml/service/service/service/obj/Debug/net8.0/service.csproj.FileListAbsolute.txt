@@ -1,0 +1,15 @@
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/service/service/service/bin/Debug/net8.0/service
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/service/service/service/bin/Debug/net8.0/service.deps.json
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/service/service/service/bin/Debug/net8.0/service.runtimeconfig.json
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/service/service/service/bin/Debug/net8.0/service.dll
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/service/service/service/bin/Debug/net8.0/service.pdb
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/service/service/service/obj/Debug/net8.0/service.GeneratedMSBuildEditorConfig.editorconfig
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/service/service/service/obj/Debug/net8.0/service.AssemblyInfoInputs.cache
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/service/service/service/obj/Debug/net8.0/service.AssemblyInfo.cs
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/service/service/service/obj/Debug/net8.0/service.csproj.CoreCompileInputs.cache
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/service/service/service/obj/Debug/net8.0/service.sourcelink.json
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/service/service/service/obj/Debug/net8.0/service.dll
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/service/service/service/obj/Debug/net8.0/refint/service.dll
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/service/service/service/obj/Debug/net8.0/service.pdb
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/service/service/service/obj/Debug/net8.0/service.genruntimeconfig.cache
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/service/service/service/obj/Debug/net8.0/ref/service.dll

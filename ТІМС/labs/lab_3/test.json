@@ -1,0 +1,233 @@
+{
+    "cells": [
+     {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+       "# Нелінійна регресія: обчислення умовних середніх, побудова поля кореляції та визначення функції регресії"
+      ]
+     },
+     {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+       "import numpy as np\n",
+       "import matplotlib.pyplot as plt\n",
+       "import pandas as pd"
+      ]
+     },
+     {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+       "## Завантаження даних з файлу"
+      ]
+     },
+     {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+       "# Вкажіть шлях до вашого файлу\n",
+       "file_path = '/mnt/data/matrix.csv'  # змініть на шлях до вашого файлу"
+      ]
+     },
+     {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+       "# Зчитування даних з файлу\n",
+       "data = pd.read_csv(file_path, header=0)\n",
+       "data = data.replace(0, np.nan)  # заміна нулів на NaN для коректного обчислення середніх\n",
+       "data"
+      ]
+     },
+     {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+       "## Витягнення значень x та y"
+      ]
+     },
+     {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+       "x_values = data.columns[1:].astype(int).tolist()\n",
+       "y_values = data.iloc[:, 0].dropna().astype(int).tolist()\n",
+       "frequencies = data.iloc[:, 1:].values\n",
+       "\n",
+       "print(\"X значення:\", x_values)\n",
+       "print(\"Y значення:\", y_values)\n",
+       "print(\"Частоти:\", frequencies)"
+      ]
+     },
+     {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+       "## Обчислення умовних середніх"
+      ]
+     },
+     {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+       "def calculate_conditional_means(x_values, frequencies):\n",
+       "    y_means = []\n",
+       "    for i, x in enumerate(x_values):\n",
+       "        sum_y = 0\n",
+       "        count = 0\n",
+       "        for j in range(len(frequencies)):\n",
+       "            if not np.isnan(frequencies[j][i]):\n",
+       "                sum_y += frequencies[j][i] * y_values[j]\n",
+       "                count += frequencies[j][i]\n",
+       "        y_means.append(sum_y / count if count != 0 else None)\n",
+       "    return y_means\n",
+       "\n",
+       "y_means = calculate_conditional_means(x_values, frequencies)\n",
+       "print(\"Умовні середні:\", y_means)"
+      ]
+     },
+     {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+       "## Побудова поля кореляції"
+      ]
+     },
+     {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+       "plt.scatter(x_values, y_means, color='red')\n",
+       "plt.xlabel('X')\n",
+       "plt.ylabel('Умовне середнє Y')\n",
+       "plt.title('Поле кореляції')\n",
+       "plt.show()"
+      ]
+     },
+     {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+       "## Визначення функції регресії (параболічна регресія другого порядку)"
+      ]
+     },
+     {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+       "coefficients = np.polyfit(x_values, y_means, 2)  # Параболічна регресія другого порядку\n",
+       "parabolic_regression = np.poly1d(coefficients)\n",
+       "\n",
+       "# Побудова графіка регресії\n",
+       "x_range = np.linspace(min(x_values), max(x_values), 100)\n",
+       "plt.plot(x_range, parabolic_regression(x_range), label='Параболічна регресія')\n",
+       "plt.scatter(x_values, y_means, color='red', label='Умовні середні')\n",
+       "plt.xlabel('X')\n",
+       "plt.ylabel('Y')\n",
+       "plt.legend()\n",
+       "plt.title('Параболічна регресія Y на X')\n",
+       "plt.show()"
+      ]
+     },
+     {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+       "## Запис рівняння регресії"
+      ]
+     },
+     {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+       "print(f'Рівняння регресії: Y = {coefficients[0]}X^2 + {coefficients[1]}X + {coefficients[2]}')"
+      ]
+     },
+     {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+       "## Обчислення дисперсії Y відносно кривої регресії"
+      ]
+     },
+     {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+       "observed_y = []\n",
+       "predicted_y = []\n",
+       "\n",
+       "for i, x in enumerate(x_values):\n",
+       "    for j in range(len(frequencies)):\n",
+       "        if not np.isnan(frequencies[j][i]):\n",
+       "            observed_y.extend([y_values[j]] * int(frequencies[j][i]))\n",
+       "            predicted_y.extend([parabolic_regression(x)] * int(frequencies[j][i]))\n",
+       "\n",
+       "# Дисперсія\n",
+       "observed_y = np.array(observed_y)\n",
+       "predicted_y = np.array(predicted_y)\n",
+       "variance = np.mean((observed_y - predicted_y) ** 2)\n",
+       "print(f'Дисперсія: {variance}')"
+      ]
+     },
+     {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+       "## Обчислення суми квадратів відхилень умовних середніх від значень функції регресії"
+      ]
+     },
+     {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+       "delta_squared = np.sum((np.array(y_means) - parabolic_regression(np.array(x_values))) ** 2)\n",
+       "print(f'Сума квадратів відхилень: {delta_squared}')"
+      ]
+     }
+    ],
+    "metadata": {
+     "kernelspec": {
+      "display_name": "Python 3",
+      "language": "python",
+      "name": "python3"
+     },
+     "language_info": {
+      "codemirror_mode": {
+       "name": "ipython",
+       "version": 3
+      },
+      "file_extension": ".py",
+      "mimetype": "text/x-python",
+      "name": "python",
+      "nbconvert_exporter": "python",
+      "pygments_lexer": "ipython3",
+      "version": "3.8.5"
+     }
+    },
+    "nbformat": 4,
+    "nbformat_minor": 4
+   }
+   
