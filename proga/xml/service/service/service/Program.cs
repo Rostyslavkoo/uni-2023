@@ -72,27 +72,29 @@ public class ServiceCenter
         var operations = LoadOperations(operationsFilePath);
         var receipts = LoadReceipts(receiptsFilePath);
 
-        var query = from receipt in receipts
-                    join operation in operations on receipt.OperationId equals operation.Id
-                    join category in categories on receipt.CategoryId equals category.Id
-                    group operation by category into categoryGroup
-                    orderby categoryGroup.Key.Name
-                    select new
-                    {
-                        CategoryName = categoryGroup.Key.Name,
-                        Operations = categoryGroup
-                            .GroupBy(op => op.Name)
-                            .Select(g => new { OperationName = g.Key, Count = g.Count() })
-                            .OrderByDescending(op => op.Count)
-                            .ToList()
-                    };
+        var query = from category in categories
+            join receipt in receipts on category.Id equals receipt.CategoryId
+            join operation in operations on receipt.OperationId equals operation.Id
+            group new { operation, receipt } by category.Name
+            into groupC
+            orderby groupC.Key
+            select new
+            {
+                CategoryName = groupC.Key,
+                OperationList = groupC
+                    .GroupBy(x => x.operation.Name)
+                    .Select(x => new { OperationName = x.Key, OpertionCount = x.Count()})
+                    .OrderByDescending(o => o.OpertionCount)
+                    .ToList()
+                
+            };
 
         using (var writer = new StreamWriter(outputFilePath))
         {
             writer.WriteLine("Category,Operations");
             foreach (var category in query)
             {
-                var operationsList = string.Join(", ", category.Operations.Select(op => $"{op.OperationName}: {op.Count}"));
+                var operationsList = string.Join(", ", category.OperationList.Select(op => $"{op.OperationName}:{op.OpertionCount} "));
                 writer.WriteLine($"{category.CategoryName},{operationsList}");
             }
         }

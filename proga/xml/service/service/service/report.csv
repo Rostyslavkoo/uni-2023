@@ -1,4 +1,4 @@
 Category,Operations
-Appliances,Repair: 1, Installation: 1
-Electronics,Repair: 1, Maintenance: 1
-Furniture,Maintenance: 1, Repair: 1
+Appliances,Installation:3 , Repair:1 
+Electronics,Repair:2 , Maintenance:1 
+Furniture,Maintenance:1 , Repair:1 
