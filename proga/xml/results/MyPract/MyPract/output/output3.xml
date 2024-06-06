@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Group GroupName="PMI-21">
+    <Student StudentName="Dudynets O." StudentScore="10" />
+    <Student StudentName="Furman E." StudentScore="70" />
+    <Student StudentName="Ivankiv I." StudentScore="50" />
+  </Group>
+</Items>

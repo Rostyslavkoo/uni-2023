@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Group GroupName="Brigade 1">
+    <Worker WorkerName="Ivanov" WorkerTotal="700" />
+    <Worker WorkerName="Urdeichuk" WorkerTotal="800" />
+  </Group>
+  <Group GroupName="Brigade 2">
+    <Worker WorkerName="Furman" WorkerTotal="1200" />
+  </Group>
+</Items>

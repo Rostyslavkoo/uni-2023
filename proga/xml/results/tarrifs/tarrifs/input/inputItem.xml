@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+    <Item>
+        <Id>1</Id>
+        <Name>Item_1</Name>
+    </Item>
+    <Item>
+        <Id>2</Id>
+        <Name>Item_2</Name>
+    </Item>
+</Items>

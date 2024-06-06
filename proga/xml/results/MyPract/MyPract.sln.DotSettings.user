@@ -1,0 +1,9 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d0902dc5_002De84f_002D403d_002D9777_002D23d2dae2d52b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestA" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::6FDFE35E-9A64-483F-8C5C-30AD2B5620B7::net8.0::TestProject1.TaskResultsProjectTests.TestA&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::6FDFE35E-9A64-483F-8C5C-30AD2B5620B7::net8.0::TestProject1.TaskResultsProjectTests.TestB&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::6FDFE35E-9A64-483F-8C5C-30AD2B5620B7::net8.0::TestProject1.TaskResultsProjectTests.TestC&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:Boolean x:Key="/Default/UnloadedProject/UnloadedProjects/=c5709dbd_002D437a_002D4b2d_002Dad65_002D2a63e1b435a0_0023TestProject1/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

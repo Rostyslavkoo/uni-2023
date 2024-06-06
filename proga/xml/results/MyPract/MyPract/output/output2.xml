@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Group GroupName="PMI-21">
+    <Subject SubjectName="Theme Name 1">
+      <Result StudentName="Furman" StudentResult="70" />
+      <Result StudentName="Ivankiv" StudentResult="50" />
+    </Subject>
+    <Subject SubjectName="Theme Name 2">
+      <Result StudentName="Dudynets" StudentResult="10" />
+    </Subject>
+  </Group>
+</Items>

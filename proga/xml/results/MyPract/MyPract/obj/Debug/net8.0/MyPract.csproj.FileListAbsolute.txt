@@ -1,0 +1,15 @@
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/MyPract/MyPract/bin/Debug/net8.0/MyPract
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/MyPract/MyPract/bin/Debug/net8.0/MyPract.deps.json
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/MyPract/MyPract/bin/Debug/net8.0/MyPract.runtimeconfig.json
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/MyPract/MyPract/bin/Debug/net8.0/MyPract.dll
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/MyPract/MyPract/bin/Debug/net8.0/MyPract.pdb
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/MyPract/MyPract/obj/Debug/net8.0/MyPract.GeneratedMSBuildEditorConfig.editorconfig
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/MyPract/MyPract/obj/Debug/net8.0/MyPract.AssemblyInfoInputs.cache
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/MyPract/MyPract/obj/Debug/net8.0/MyPract.AssemblyInfo.cs
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/MyPract/MyPract/obj/Debug/net8.0/MyPract.csproj.CoreCompileInputs.cache
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/MyPract/MyPract/obj/Debug/net8.0/MyPract.sourcelink.json
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/MyPract/MyPract/obj/Debug/net8.0/MyPract.dll
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/MyPract/MyPract/obj/Debug/net8.0/refint/MyPract.dll
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/MyPract/MyPract/obj/Debug/net8.0/MyPract.pdb
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/MyPract/MyPract/obj/Debug/net8.0/MyPract.genruntimeconfig.cache
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/MyPract/MyPract/obj/Debug/net8.0/ref/MyPract.dll

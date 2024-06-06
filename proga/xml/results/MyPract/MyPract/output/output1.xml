@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Group GroupName="PMI-21">
+    <Student StudentName="Egor">
+      <Result R="Theme Name 1: 35 " />
+      <Result R="Theme Name 1: 35 " />
+    </Student>
+    <Student StudentName="Ivan">
+      <Result R="Theme Name 1: 50 " />
+    </Student>
+    <Student StudentName="Oleksandr">
+      <Result R="Theme Name 2: 10 " />
+    </Student>
+  </Group>
+</Items>

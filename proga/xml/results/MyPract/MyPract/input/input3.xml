@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+    <Item>
+        <TaskId>1</TaskId>
+        <StudentId>1</StudentId>
+        <Score>100</Score>
+        <SubmitDate>2024-06-06</SubmitDate>
+    </Item>
+    <Item>
+        <TaskId>1</TaskId>
+        <StudentId>2</StudentId>
+        <Score>70</Score>
+        <SubmitDate>2024-06-06</SubmitDate>
+    </Item>
+    <Item>
+        <TaskId>1</TaskId>
+        <StudentId>2</StudentId>
+        <Score>70</Score>
+        <SubmitDate>2024-06-06</SubmitDate>
+    </Item>
+    <Item>
+        <TaskId>2</TaskId>
+        <StudentId>3</StudentId>
+        <Score>20</Score>
+        <SubmitDate>2024-09-06</SubmitDate>
+    </Item>
+</Items>

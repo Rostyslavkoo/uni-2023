@@ -1,0 +1,15 @@
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/tarrifs/tarrifs/bin/Debug/net8.0/tarrifs
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/tarrifs/tarrifs/bin/Debug/net8.0/tarrifs.deps.json
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/tarrifs/tarrifs/bin/Debug/net8.0/tarrifs.runtimeconfig.json
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/tarrifs/tarrifs/bin/Debug/net8.0/tarrifs.dll
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/tarrifs/tarrifs/bin/Debug/net8.0/tarrifs.pdb
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/tarrifs/tarrifs/obj/Debug/net8.0/tarrifs.GeneratedMSBuildEditorConfig.editorconfig
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/tarrifs/tarrifs/obj/Debug/net8.0/tarrifs.AssemblyInfoInputs.cache
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/tarrifs/tarrifs/obj/Debug/net8.0/tarrifs.AssemblyInfo.cs
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/tarrifs/tarrifs/obj/Debug/net8.0/tarrifs.csproj.CoreCompileInputs.cache
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/tarrifs/tarrifs/obj/Debug/net8.0/tarrifs.sourcelink.json
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/tarrifs/tarrifs/obj/Debug/net8.0/tarrifs.dll
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/tarrifs/tarrifs/obj/Debug/net8.0/refint/tarrifs.dll
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/tarrifs/tarrifs/obj/Debug/net8.0/tarrifs.pdb
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/tarrifs/tarrifs/obj/Debug/net8.0/tarrifs.genruntimeconfig.cache
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/tarrifs/tarrifs/obj/Debug/net8.0/ref/tarrifs.dll
