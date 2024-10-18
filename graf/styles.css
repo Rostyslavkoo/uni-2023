@@ -1,0 +1,94 @@
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin: 0;
+	height: 100vh;
+	background-color: #f3f2f2ec;
+	color: #ffffff;
+	justify-content: space-around;
+}
+
+.canvas-wrapper {
+	width: 710px;
+	max-width: 900px;
+	height: 80%;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 0 0 20px rgba(206, 201, 201, 0.5);
+	border-radius: 20px;
+}
+
+canvas {
+	width: 100%;
+	height: 100%;
+	background-color: #f3f2f2ec;
+	border-radius: 20px;
+}
+
+.controls {
+	display: flex;
+	gap: 15px;
+	background-color: #e18383;
+	padding: 20px;
+	border-radius: 10px;
+	color: white;
+	box-shadow: 0 0 10px #e18383; /* Опціонально: тінь */
+}
+
+.controls label {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 16px;
+	margin-right: 5px;
+}
+
+.controls input[type='range'] {
+	width: 150px;
+	margin-left: 5px;
+}
+
+.controls input[type='color'] {
+	width: 50px;
+	height: 30px;
+	border: none;
+	margin-left: 5px;
+	border: 1px solid #edebeb;
+	border-radius: 5px;
+}
+
+.controls input[type='number'] {
+	width: 70px;
+	padding: 5px;
+	border-radius: 5px;
+	border: none;
+
+	border: 1px solid #edebeb;
+	margin-left: 5px;
+}
+
+.reset-button {
+	background-color: transparent;
+	border: none;
+	color: #ffffff;
+	cursor: pointer;
+	align-self: flex-end;
+	transition: transform 0.2s ease;
+	font-family: Arial, sans-serif;
+    border: 1px solid #ffffff4b;
+    border-radius: 10px;
+    height: 32px;
+    width: 32px;
+    opacity: 0.8;
+
+}
+.reset-button:hover {
+    opacity: 1;
+}
+.reset-button:active {
+    transform: scale(1.3);
+}
