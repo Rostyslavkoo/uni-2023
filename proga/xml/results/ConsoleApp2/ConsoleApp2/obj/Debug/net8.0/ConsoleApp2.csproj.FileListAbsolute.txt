@@ -1,0 +1,15 @@
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/ConsoleApp2/ConsoleApp2/bin/Debug/net8.0/ConsoleApp2
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/ConsoleApp2/ConsoleApp2/bin/Debug/net8.0/ConsoleApp2.deps.json
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/ConsoleApp2/ConsoleApp2/bin/Debug/net8.0/ConsoleApp2.runtimeconfig.json
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/ConsoleApp2/ConsoleApp2/bin/Debug/net8.0/ConsoleApp2.dll
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/ConsoleApp2/ConsoleApp2/bin/Debug/net8.0/ConsoleApp2.pdb
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/ConsoleApp2/ConsoleApp2/obj/Debug/net8.0/ConsoleApp2.GeneratedMSBuildEditorConfig.editorconfig
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/ConsoleApp2/ConsoleApp2/obj/Debug/net8.0/ConsoleApp2.AssemblyInfoInputs.cache
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/ConsoleApp2/ConsoleApp2/obj/Debug/net8.0/ConsoleApp2.AssemblyInfo.cs
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/ConsoleApp2/ConsoleApp2/obj/Debug/net8.0/ConsoleApp2.csproj.CoreCompileInputs.cache
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/ConsoleApp2/ConsoleApp2/obj/Debug/net8.0/ConsoleApp2.sourcelink.json
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/ConsoleApp2/ConsoleApp2/obj/Debug/net8.0/ConsoleApp2.dll
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/ConsoleApp2/ConsoleApp2/obj/Debug/net8.0/refint/ConsoleApp2.dll
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/ConsoleApp2/ConsoleApp2/obj/Debug/net8.0/ConsoleApp2.pdb
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/ConsoleApp2/ConsoleApp2/obj/Debug/net8.0/ConsoleApp2.genruntimeconfig.cache
+/Users/rostislavurdejcuk/My Drive/lnu/uni-2023/proga/xml/results/ConsoleApp2/ConsoleApp2/obj/Debug/net8.0/ref/ConsoleApp2.dll
