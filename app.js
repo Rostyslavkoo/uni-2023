@@ -1,82 +1,49 @@
-const canvas = document.getElementById('animationCanvas');
-const ctx = canvas.getContext('2d');
+// Налаштування канвасів для кожної з проекцій
+const canvasXY = document.getElementById('canvasXY');
+const ctxXY = canvasXY.getContext('2d');
+const canvasXZ = document.getElementById('canvasXZ');
+const ctxXZ = canvasXZ.getContext('2d');
+const canvasYZ = document.getElementById('canvasYZ');
+const ctxYZ = canvasYZ.getContext('2d');
 
-// Налаштування розмірів канви відповідно до врапера
-const wrapper = document.querySelector('.canvas-wrapper');
-canvas.width = wrapper.offsetWidth;
-canvas.height = wrapper.offsetHeight;
+function drawSurface(ctx, projection) {
+    const uSegments = 20;
+    const vSegments = 20;
+    const scale = 50;
 
-let time = 0;
-let circleCount = 10;  // Кількість кіл
-let animationSpeed = 0.01; // Швидкість анімації
+    ctx.clearRect(0, 0, canvasXY.width, canvasXY.height);
+    ctx.strokeStyle = 'blue';
+    ctx.lineWidth = 1;
 
-const DEFAULT = {
-    color: '#ff9494',
-    animationSpeed: 0.01,
-    circleCount: 10,
-    time: 0
-}
-let color = DEFAULT.color; // Початковий колір
-const maxRadius = Math.min(canvas.width, canvas.height) / 3; // Максимальний радіус
+    for (let i = 0; i <= uSegments; i++) {
+        for (let j = 0; j <= vSegments; j++) {
+            const u = i / uSegments;
+            const v = j / vSegments;
 
-// Вибір елементів управління
-const circleCountInput = document.getElementById('circleCount');
-const speedInput = document.getElementById('speed');
-const colorInput = document.getElementById('circleColor');
+            const x = (u * 2 - 1) * 2; 
+            const y = (v * 2 - 1) * 2; 
+            const z = Math.sin(x) * Math.cos(y);
 
-// Функція для створення кольорів в HSL форматі
-function getColor(hue) {
-    return `hsl(${hue % 360}, 100%, 50%)`;
-}
+            let px, py;
+            if (projection === 'xy') {
+                px = canvasXY.width / 2 + x * scale;
+                py = canvasXY.height / 2 - y * scale;
+            } else if (projection === 'xz') {
+                px = canvasXZ.width / 2 + x * scale;
+                py = canvasXZ.height / 2 - z * scale;
+            } else if (projection === 'yz') {
+                px = canvasYZ.width / 2 + y * scale;
+                py = canvasYZ.height / 2 - z * scale;
+            }
 
-function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // Очищуємо попереднє зображення
-
-    // Центр канви
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-
-    // Малюємо концентричні кола
-    for (let i = 0; i < circleCount; i++) {
-        const radius = (i + 1) * (maxRadius / circleCount) * (Math.sin(time + i) + 1.5);
-        const dynamicColor = getColor((time * 50 + i * 30) % 360); // Кольори змінюються
-        ctx.beginPath();
-        ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
-        ctx.strokeStyle = colorInput.value === DEFAULT.color ? dynamicColor : colorInput.value;
-        ctx.lineWidth = 5;
-        ctx.stroke();
+            // Рисування точки
+            ctx.beginPath();
+            ctx.arc(px, py, 2, 0, 2 * Math.PI);
+            ctx.fill();
+        }
     }
-
-    time += animationSpeed; // Зміна часу для анімації
-
-    requestAnimationFrame(draw); // Запускаємо наступний кадр анімації
 }
 
-draw(); // Запускаємо анімацію
-
-// Обробка змін кількості кіл
-circleCountInput.addEventListener('input', (e) => {
-    circleCount = parseInt(e.target.value, 10);
-});
-
-// Обробка змін швидкості
-speedInput.addEventListener('input', (e) => {
-    animationSpeed = parseFloat(e.target.value);
-});
-
-// Обробка зміни розміру вікна
-window.addEventListener('resize', () => {
-    canvas.width = wrapper.offsetWidth;
-    canvas.height = wrapper.offsetHeight;
-});
-function resetFilters() {
-    circleCount = DEFAULT.circleCount;
-    animationSpeed = DEFAULT.animationSpeed;
-    colorInput.value = DEFAULT.color;
-
-    // Оновлюємо значення на інтерфейсі
-    circleCountInput.value = DEFAULT.circleCount;
-    speedInput.value = DEFAULT.animationSpeed;
-}
-
-resetButton.addEventListener('click', resetFilters);
+drawSurface(ctxXY, 'xy'); 
+drawSurface(ctxXZ, 'xz'); 
+drawSurface(ctxYZ, 'yz'); 

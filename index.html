@@ -1,39 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
-		<link rel="stylesheet" href="styles.css" />
-	</head>
-	<body>
-		<div class="controls">
-			<label
-				>Number of Circles:
-				<input type="number" id="circleCount" value="10" min="1" max="50" />
-			</label>
-			<label
-				>Animation Speed:
-				<input
-					type="range"
-					id="speed"
-					min="0.01"
-					max="0.1"
-					step="0.01"
-					value="0.01"
-				/>
-			</label>
-			<label
-				>Color:
-				<input type="color" id="circleColor" value="#ff9494" />
-			</label>
-			<button id="resetButton" class="reset-button">&#x2715;</button>
-		</div>
-
-		<div class="canvas-wrapper">
-			<canvas id="animationCanvas"></canvas>
-		</div>
-
-		<script src="./app.js"></script>
-	</body>
+<head>
+    <meta charset="UTF-8">
+    <title>Інтерполююча поверхня</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Інтерполююча поверхня та її проекції</h1>
+    <div class="canvas-container">
+        <div>
+            <h2>Проекція на площину XY</h2>
+            <canvas id="canvasXY" width="400" height="400"></canvas>
+        </div>
+        <div>
+            <h2>Проекція на площину XZ</h2>
+            <canvas id="canvasXZ" width="400" height="400"></canvas>
+        </div>
+        <div>
+            <h2>Проекція на площину YZ</h2>
+            <canvas id="canvasYZ" width="400" height="400"></canvas>
+        </div>
+    </div>
+    <script src="./app.js"></script>
+</body>
 </html>
