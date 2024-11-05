@@ -1,76 +1,69 @@
-from fastapi import FastAPI, File, UploadFile, BackgroundTasks
-from pydantic import BaseModel
-from uuid import uuid4
-import tensorflow as tf
+import os
+import torch
+from torchvision import models, transforms
+from flask import Flask, request, jsonify
 from PIL import Image
-from fastapi.middleware.cors import CORSMiddleware
-import asyncio
 
-app = FastAPI()
+# Ініціалізація Flask
+app = Flask(__name__)
 
-# Завантаження попередньо навченої моделі
-model = tf.keras.applications.MobileNetV2(weights="imagenet")
+# Завантаження попередньо навченого моделі ResNet50 з torchvision
+model = models.resnet50(weights="IMAGENET1K_V1")
+model.eval()
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # або вкажіть конкретне походження, наприклад, ["http://localhost:8080"]
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# Трансформація для підготовки зображення до введення в модель
+transform = transforms.Compose([
+    transforms.Resize(256),
+    transforms.CenterCrop(224),
+    transforms.ToTensor(),
+    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+])
 
-# Словник для зберігання статусів задач
-task_statuses = {}
+# Функція для передбачення
+def predict_image(image_path):
+    # Завантаження зображення
+    image = Image.open(image_path)
+    image = image.convert("RGB")  # Переконатися, що зображення RGB
 
-# Функція для обробки зображення та розпізнавання об'єктів
-def process_image_task(task_id: str, file: UploadFile):
+    # Трансформація зображення
+    image_tensor = transform(image).unsqueeze(0)  # Додаємо розмір пакету
+
+    # Виконання передбачення
+    with torch.no_grad():
+        outputs = model(image_tensor)
+
+    # Отримання класу з максимальним ймовірністю
+    _, predicted_class = torch.max(outputs, 1)
+    return predicted_class.item()
+
+# Маршрут для завантаження файлу
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file part'}), 400
+    
+    file = request.files['file']
+    
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+
+    # Збереження файлу на сервері
+    filepath = os.path.join("uploads", file.filename)
+    file.save(filepath)
+
+    # Передбачення зображення
     try:
-        
-        # Змінюємо статус задачі на "Обробка"
-        task_statuses[task_id] = {"status": "Processing", "progress": 50.0, "result": None}
-        
-        # Читання та обробка зображення
-        image = Image.open(file.file)
-        image = image.resize((224, 224))  # Змінюємо розмір зображення до необхідного
-        img_array = tf.keras.preprocessing.image.img_to_array(image)
-        img_array = tf.expand_dims(img_array, 0)  # Додаємо batch-розмір
-
-        # Розпізнавання об'єктів
-        predictions = model.predict(img_array)
-        decoded_predictions = tf.keras.applications.mobilenet_v2.decode_predictions(predictions, top=3)[0]
-
-        # Форматування результатів
-        result = ", ".join([f"{pred[1]} ({pred[2]*100:.2f}%)" for pred in decoded_predictions])
-        
-        # Оновлення статусу задачі до "Завершено"
-        task_statuses[task_id] = {"status": "Completed", "progress": 100.0, "result": result}
-    
+        predicted_class = predict_image(filepath)
+        return jsonify({
+            'message': 'File successfully uploaded',
+            'recognizedObject': predicted_class,  # Точний клас
+            'fileName': file.filename,
+            'fileSize': os.path.getsize(filepath)
+        })
     except Exception as e:
-        # У разі помилки оновлюємо статус задачі
-        task_statuses[task_id] = {"status": "Failed", "progress": 100.0, "result": str(e)}
+        return jsonify({'error': str(e)}), 500
 
-# Завантаження зображення для розпізнавання
-@app.post("/upload")
-async def upload_image(background_tasks: BackgroundTasks, file: UploadFile = File(...)):
-    if file.file._file.size > 10 * 1024 * 1024:  # Обмеження в 10 МБ
-        return {"error": "File too large. Maximum size is 10MB."}
-    task_id = str(uuid4())
-    # Ініціалізація статусу задачі як "В очікуванні"
-    task_statuses[task_id] = {"status": "Pending", "progress": 0.0, "result": None}
-    
-    # Додавання задачі для обробки у фоновий процес
-    background_tasks.add_task(process_image_task, task_id, file)
-
-    # Чекаємо завершення обробки
-    while task_statuses[task_id]["status"] == "Pending":
-        await asyncio.sleep(1)  # Затримка для уникнення блокування
-
-    # Повертаємо результат одразу після завершення обробки
-    return task_statuses[task_id]
-
-# Перевірка статусу задачі
-@app.get("/status/{task_id}")
-def check_status(task_id: str):
-    # Повертаємо статус задачі
-    status = task_statuses.get(task_id, {"status": "Not found"})
-    return status
+if __name__ == '__main__':
+    if not os.path.exists('uploads'):
+        os.makedirs('uploads')
+    app.run(debug=True, host='0.0.0.0', port=5001)

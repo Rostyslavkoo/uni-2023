@@ -50,18 +50,22 @@ export default {
       formData.append('file', selectedFile.value);
 
       try {
-         await axios.post('https://your-api-url.com/upload', formData);
+        const response = await axios.post("http://127.0.0.1:5001/upload", formData, {
+          headers: { 
+            "Content-Type": "multipart/form-data",
+          },
+        });
         
-        // // Зберігаємо результат завантаження
-        // uploadResult.value = {
-        //   message: response.data.message,
-        //   recognizedObject: response.data.recognizedObject, // Отримуємо назву об'єкта
-        //   fileName: response.data.file.name,
-        //   fileSize: response.data.file.size,
-        // };
+        // Зберігаємо результат завантаження
+        uploadResult.value = {
+          message: response.data.message,
+          recognizedObject: response.data.recognizedObject, // Отримуємо назву об'єкта
+          fileName: selectedFile.value.name,
+          fileSize: selectedFile.value.size,
+        };
       } catch (error) {
         console.error('Помилка завантаження файлу:', error);
-        alert('Не вдалося завантажити файл.');
+        // alert('Не вдалося завантажити файл.');
       } finally {
         loading.value = false;
       }
