@@ -9,7 +9,7 @@ build/
 *.egg
 *.whl
 node_modules
-
+uploads
 # Віртуальне середовище
 venv/
 env/
