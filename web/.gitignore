@@ -8,6 +8,7 @@ dist/
 build/
 *.egg
 *.whl
+node_modules
 
 # Віртуальне середовище
 venv/
