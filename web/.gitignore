@@ -32,3 +32,5 @@ Thumbs.db
 *.tmp
 *.swp
 *.swo
+
+node_modules
