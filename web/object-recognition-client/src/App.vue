@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <h1>Розпізнавання об'єктів на зображеннях</h1>
     <UploadImage />
     </div> 
 </template>
