@@ -1,31 +1,55 @@
 const http = require("http");
 const { createProxyServer } = require("http-proxy");
-const proxy = createProxyServer({});
-const servers = ["http://localhost:5001", "http://localhost:5002/"];
+
+// Створюємо проксі-сервер з підтримкою WebSocket
+const proxy = createProxyServer({ ws: true });
+
+// Масив серверів для балансування навантаження
+const servers = ["http://localhost:5001", "http://localhost:5002"];
 const activeRequests = Array(servers.length).fill(0);
 
+// Створюємо HTTP сервер, який буде балансувати навантаження
 const server = http.createServer((req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
-    res.setHeader(
-        "Access-Control-Allow-Methods",
-        "GET, POST, PUT, DELETE, OPTIONS"
-    );
-    res.setHeader(
-        "Access-Control-Allow-Headers",
-        "Content-Type, Authorization"
-    );
+  // Налаштування CORS для HTTP-запитів
+  const allowedOrigins = ["http://localhost:5173", "http://localhost:8080"]; // Додаємо обидва джерела
+  const origin = req.headers.origin;
 
-    const leastLoadedServerIndex = activeRequests.indexOf(
-        Math.min(...activeRequests)
-    );
-    activeRequests[leastLoadedServerIndex]++;
-    
-    proxy.web(req, res, { target: servers[leastLoadedServerIndex] });
-    console.log(`Forwarding request to server: ${servers[leastLoadedServerIndex]}`);
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin); // Дозволяємо запити тільки з цих джерел
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  }
 
-    res.on("finish", () => {
-        activeRequests[leastLoadedServerIndex]--;
-    });
+  // Вибір серверу з мінімальним навантаженням
+  const leastLoadedServerIndex = activeRequests.indexOf(Math.min(...activeRequests));
+  activeRequests[leastLoadedServerIndex]++;
+
+  // Перенаправляємо запит до обраного сервера
+  proxy.web(req, res, { target: servers[leastLoadedServerIndex] });
+  console.log(`Forwarding request to server: ${servers[leastLoadedServerIndex]}`);
+
+  // Зменшуємо лічильник активних запитів після завершення обробки
+  res.on("finish", () => {
+    activeRequests[leastLoadedServerIndex]--;
+  });
 });
 
-server.listen(5001, () => console.log("Load Balancer running on port 5001"));
+// Налаштовуємо проксі для WebSocket з'єднань
+server.on("upgrade", (req, socket, head) => {
+  const leastLoadedServerIndex = activeRequests.indexOf(Math.min(...activeRequests));
+  activeRequests[leastLoadedServerIndex]++;
+
+  // Перенаправляємо WebSocket з'єднання
+  proxy.ws(req, socket, head, { target: servers[leastLoadedServerIndex] });
+  console.log(`Upgrading WebSocket connection to server: ${servers[leastLoadedServerIndex]}`);
+
+  // Зменшуємо лічильник активних запитів після завершення обробки
+  socket.on("close", () => {
+    activeRequests[leastLoadedServerIndex]--;
+  });
+});
+
+// Слухаємо порт 5001 для HTTP-запитів та WebSocket з'єднань
+server.listen(5001, () => {
+  console.log("Load Balancer running on port 5001");
+});

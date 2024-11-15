@@ -217,11 +217,6 @@ export default {
 		const isFileSizeValid = ref(true);
 		const MAX_FILE_SIZE = 2 * 1024 * 1024;
 
-		if (localStorage.getItem('authToken') && !socket.value) {
-			isAuthenticated.value = true;
-			token.value = localStorage.getItem('authToken');
-			socket.value = io('http://localhost:5001');
-		}
 		const checkFileSize = () => {
 			if (selectedFile.value) {
 				if (selectedFile.value.size > MAX_FILE_SIZE) {
@@ -300,9 +295,7 @@ export default {
 		if (localStorage.getItem('authToken')) {
 			isAuthenticated.value = true;
 			token.value = localStorage.getItem('authToken');
-			socket.value = io('http://localhost:5001', {
-				query: { token: token.value }, // Додаємо токен до запиту сокета
-			});
+			socket.value = io('http://localhost:5001');
 		}
 
 		const stopProcessing = () => {
