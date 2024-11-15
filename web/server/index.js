@@ -33,11 +33,13 @@ const authMiddleware = (req, res, next) => {
 };
 
 const users = [
-	{ username: 'admin', password: 'admin123', token: 'abc123' },
-	{ username: 'user', password: 'user123', token: 'xyz456' },
+	{
+		username: 'admin',
+		password: 'admin123',
+		token: 'V3ZI8IOjLxcDRoFhUV7Y3MKQ9yodGjCjCKCP6brt4ekL5tgD0DM0QBJvQZ7CHx5O',
+	},
 ];
 
-// Налаштування для multer (збереження файлів на сервері)
 const storage = multer.diskStorage({
 	destination: (req, file, cb) => {
 		cb(null, './uploads/');
@@ -49,7 +51,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// Створюємо каталог для завантажених файлів, якщо його ще немає
 if (!fs.existsSync('./uploads')) {
 	fs.mkdirSync('./uploads');
 }
@@ -60,9 +61,8 @@ mongoose
 	.catch(err => console.error('MongoDB connection error:', err));
 
 let shouldStop = false;
-let shouldStopID = null; // Флаг для зупинки прогресу
+let shouldStopID = null;
 
-// Обробка запиту на завантаження зображення
 app.post(
 	'/upload',
 	authMiddleware,
@@ -101,11 +101,9 @@ app.post(
 				progress: 0,
 			});
 			shouldStop = false;
-			// Симулюємо затримку для прогресу
-			const totalSteps = 10; // Кількість кроків для обробки
+			const totalSteps = 10;
 			let currentStep = 0;
 
-			// Функція для симуляції затримки та оновлення прогресу
 			const simulateProgress = async () => {
 				if (currentStep <= totalSteps && !shouldStop) {
 					const randomProgress = Math.floor(Math.random() * 15) + 5; // випадковий приріст від 5 до 15
@@ -145,15 +143,10 @@ app.post(
 				}
 			};
 
-			// Симулюємо прогрес
 			simulateProgress();
 
-			// Обробка зображення (змінюємо розмір і робимо чорно-білим)
-			await sharp(inputImagePath)
-				.grayscale() // Змінюємо зображення на чорно-біле
-				.toFile(outputImagePath);
+			await sharp(inputImagePath).grayscale().toFile(outputImagePath);
 
-			// Відповідь з результатами
 			res.json({
 				message: 'Зображення успішно завантажено',
 			});
@@ -164,7 +157,6 @@ app.post(
 	}
 );
 
-// Подія для зупинки обробки
 io.on('connection', socket => {
 	socket.on('stopProcessing', id => {
 		shouldStop = true;
@@ -176,19 +168,18 @@ io.on('connection', socket => {
 	});
 });
 
-// Статичні файли для доступу до зображень
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.get('/history', authMiddleware, async (req, res) => {
 	try {
-		const images = await Image.find().sort({ createdAt: -1 }); // Отримуємо всі зображення, сортуємо за датою створення
+		const images = await Image.find().sort({ createdAt: -1 });
 		res.json(images);
 	} catch (err) {
 		console.error(err);
 		res.status(500).send('Помилка при отриманні історії');
 	}
 });
-app.delete('/api/clear-tasks',authMiddleware, async (req, res) => {
+app.delete('/api/clear-tasks', authMiddleware, async (req, res) => {
 	try {
 		const deletedTasks = await Image.deleteMany({});
 		res.status(200).json({
@@ -201,7 +192,6 @@ app.delete('/api/clear-tasks',authMiddleware, async (req, res) => {
 });
 app.use(upload.none());
 app.post('/login', (req, res) => {
-	// Use req.body to access the submitted data
 	const { username, password } = req.body;
 
 	if (!username || !password) {
@@ -219,7 +209,7 @@ app.post('/login', (req, res) => {
 	}
 });
 
-app.put('/stop/:id',authMiddleware, async (req, res) => {
+app.put('/stop/:id', authMiddleware, async (req, res) => {
 	const { id } = req.params;
 	await Image.findByIdAndUpdate(id, { status: 'stopped' });
 	io.emit('updateHistory');
